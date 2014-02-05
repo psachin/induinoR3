@@ -1,0 +1,5 @@
+* induinoR3
+
+** Usage
+   - Use arduino's IDE.
+   - Select Board as =Arduino Uno=.
