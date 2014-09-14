@@ -51,6 +51,7 @@ void loop() {
      pauseScaning();
      Serial.println("Remote value: ");
      Serial.print(remote_val);
+     Serial.println("");
   }
 
   Serial.print(inches);
@@ -105,7 +106,7 @@ void playTone(long duration, int freq) {
 void startWarning(long inches) {
   if(inches <= criticalLevel) {
       Serial.println("(WARNING!)");
-      playTone(500, 160);
+      playTone(300, 160);
       // Serial.println();
   }
 
