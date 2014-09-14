@@ -10,6 +10,7 @@ int pauseLED = 12; // Indicates the loop has pause
 
 int warningLevel = 3;
 int criticalLevel = 1;
+int criticalWarningLED = 13;
 
 
 void setup() {
@@ -48,10 +49,12 @@ void loop() {
 
 
   if(remote_val>0 && remote_val==149) {
-     pauseScaning();
-     Serial.println("Remote value: ");
-     Serial.print(remote_val);
-     Serial.println("");
+      if (inches <= warningLevel) {
+	  pauseScaning();
+	  Serial.println("Remote value: ");
+	  Serial.print(remote_val);
+	  Serial.println("");
+      }
   }
 
   Serial.print(inches);
@@ -65,6 +68,7 @@ void loop() {
   // Serial.print("cm");
   Serial.println();
   digitalWrite(warningLED, LOW);
+  digitalWrite(criticalWarningLED, LOW);
   delay(100);
 }
 
@@ -106,6 +110,7 @@ void playTone(long duration, int freq) {
 void startWarning(long inches) {
   if(inches <= criticalLevel) {
       Serial.println("(WARNING!)");
+      digitalWrite(criticalWarningLED, HIGH);
       playTone(300, 160);
       // Serial.println();
   }
